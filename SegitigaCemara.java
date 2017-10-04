@@ -1,69 +1,49 @@
-package com.java.logic.day5;
+package com.java.loglic.custome;
 
-public class SegitigaCemara {
+public class CustomeSegitiga {
 
-	int baris = 0;
-	int kolom = 0;
-	String[][] data;
+	private int dimX = 0;
+	private int dimY = 0;
+	private String[][] data;
 	
-	public int getMaxArea(int n){
-		int max = 0;
-		for(int i = 1; i <= n; i++){
-			max = max + i;
-		}
-		
-		return max;
-	}
-	
-	public void setDataArray(int n){
-		this.baris = getMaxArea(n);
-		this.kolom = getMaxArea(n);
-		data = new String[this.baris][this.kolom];
-		
-		int start=0;
-		int end = 0;
-		for(int bangun = 1; bangun <= n; bangun++){
-			end = end + bangun;
-			for(int i = start; i < end; i++){
-				for(int j = start;j < end; j++){
-					data[i][j] = "*";
+	public void setDataArray(int input, int n2){
+		this.dimX = input * n2;
+		this.dimY = ((input+1)/2)*n2;
+		data = new String[dimY][dimX];
+		int baris = ((input+1)/2);
+		System.out.println("baris : "+ baris);
+		int inc = 0;
+		for(int bidangY = 0; bidangY < n2; bidangY++){
+			int inc2 = 0;
+			for(int bidangX = 0; bidangX < n2; bidangX++){
+				for(int i = 0; i < this.dimY; i++){
+					for(int j = 0; j < this.dimX; j++){
+						if(i + j >= input - (input/2 +1) && i > j - input/2 - 1 && i <= (input)/2){
+							data[i+inc][j+inc2] =  "*";
+						} 
+					}
 				}
+				inc2 = inc2 + input;
 			}
-			start = start + bangun;
+			inc=inc+baris;
 		}
 		
-		/*
-		for(int i = 0 + 1 ; i < 1 + 2; i++){
-			for(int j = 0 + 1;j < 1 + 2; j++){
-				data[i][j] = "*";
-			}
-		}*/
 		
-		/*for(int i = 0 + 1 + 2; i < 1 + 2 + 3; i++){
-			for(int j = 0 + 1 + 2;j < 1 + 2 + 3; j++){
-				data[i][j] = "*";
-			}
-		}*/
-		
-		showDataArray();
 	}
 	
-	
-	public void showDataArray(){
-		for(int i = 0; i < baris; i++){
-			for(int j = 0; j < kolom; j++){
-				System.out.print(data[i][j] + "\t");
+	public void showDataArray(int input, int n2){
+		setDataArray(input, n2);
+		
+		for(int i = 0; i < dimY; i++){
+			for(int j = 0; j < dimX; j++){
+				System.out.print(this.data[i][j]+"\t");
 			}
-			System.out.println();
+			System.out.println(" ");
 		}
 	}
+	
 	public static void main(String args[]){
-		SegitigaCemara cClass= new SegitigaCemara();
-		try{
-			cClass.setDataArray(5);
-		}catch(Exception e){
-			System.out.println("harus menggunakan format ganjil");
-		}
-		
+		CustomeSegitiga soal = new CustomeSegitiga();
+		soal.showDataArray(5, 3);
 	}
 }
