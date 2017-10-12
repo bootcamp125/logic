@@ -26,13 +26,22 @@
 				float: left;
 			}
 			#content{
-				
-				float : right;
+				float : left;
 				width: 70%;
 				background-color: yellow;
+				margin-bottom: 10px;
+			}
+			#main-content{
+				padding: 10px;
+				min-height: 300px;
+				word-wrap : break;
+				overflow:auto;
 			}
 			#footer{
-				background-color: brown;
+				color: #fff;
+				padding: 20px 0px;
+				text-align: center;
+				background-color: #000;
 			}
 		</style>
 	</head>
@@ -40,9 +49,13 @@
 		<div id="container">
 			<div  id="header">header</div><!-- end header-->
 			<div  id="navigation">navigation</div><!-- end nav-->
-			<div  id="content">content</div><!-- end content-->
+			<div  id="content">
+				<div id="main-content">
+					<img style="width: 300px; height: 250px;" src="https://autonetmagz.com/wp-content/uploads/2017/08/Harga-Mitsubishi-Xpander.jpg" />
+				</div>
+			</div><!-- end content-->
 			<div style="clear:both;"></div>
-			<div  id="footer">footer</div><!-- end footer-->
+			<div  id="footer">Copy right &copy; xsis mitra utama</div><!-- end footer-->
 		</div>
 	</body>
 </html>
