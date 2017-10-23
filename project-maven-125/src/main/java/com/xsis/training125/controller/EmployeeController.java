@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,5 +40,20 @@ public class EmployeeController {
 	public String savingData(@ModelAttribute Employee employee){
 		employeeService.save(employee);
 		return "redirect:/employee";
+	}
+	
+	@RequestMapping(value="/empid/{id}")
+	@ResponseBody
+	public Employee getEmployeeById(@PathVariable int id){
+		
+		System.out.println("id : "+ id);
+		/*
+		 * Employee result = employeeService.getEmployeeById(id);
+		 * return result;
+		 * */
+		Employee employee = new Employee();
+		employee.setName("sadar");
+		employee.setEmail("saadr@yahoo.com");
+		return employee;
 	}
 }

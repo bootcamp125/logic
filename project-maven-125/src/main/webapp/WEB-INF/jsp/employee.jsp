@@ -36,7 +36,7 @@
 	 				<td>${employee.address }</td>
 	 				<td>
 	 					<a class="btn btn-outline-danger delete-btn" href="#">Delete</a>
-	 					<a class="btn btn-outline-warning" href="#">Update</a>
+	 					<a class="btn btn-outline-warning update-btn" href="#">Update</a>
 	 				</td>
 	 			</tr>
 	 		</c:forEach>
@@ -46,6 +46,7 @@
  			<table>
  				<tr>
  					<td>Name</td>
+ 					<td>:</td>
  					<td>
  						<input type="text" name="name" placeholder="Enter your name" />
  					</td>
@@ -88,13 +89,40 @@
 	 	
  	<script type="text/javascript">
  		$(document).ready(function(){
- 			$('.delete-btn').on('click', function(){
- 				$('#deleteConfirmation').modal();
+ 			$('.update-btn').on('click', function(){
+ 				
+ 				//ambil data dari server => ajax
+ 				$.ajax({
+ 					type: 'POST',
+ 					url : 'employee/empid/'+2,
+ 					success : function(data){
+ 						console.log(data);
+ 					},
+ 					dataType: 'json'
+ 				});
+ 				
+ 				$('#updateModal').modal();
+ 			});
+ 			
+ 			//event submit data for update
+ 			$('#submit-update').click(function(){
+ 				//Object Notation => JSON
+ 				
+ 				//Object ala js
+ 				var Employee = {
+ 					name : $('#textName').val(),
+ 					address : $('#textAddress').val(),
+ 					email : $('#textEmail').val(),
+ 					salary : 0
+ 				};
+ 				
+ 				//ajax update
+ 				console.log(Employee);
  			});
  		});
  	</script>
  	
- 	<div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ 	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -104,11 +132,27 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        ...
+	        <form>
+			  <div class="form-group">
+			    <label for="textName">Name</label>
+			    <input type="text" class="form-control" id="textName" name="name" placeholder="Enter Name">
+			    <!-- <small id="nameHelp" class="form-text text-muted">Silahkan anda mengisi nama dengan benar</small> -->
+			  </div>
+			  <div class="form-group">
+			    <label for="textAddress">Address</label>
+			    <input type="text" class="form-control" id="textAddress" name="address" placeholder="Enter Address">
+			   <!--  <small id="emailHelp" class="form-text text-muted">Silahkan anda mengisi Email dengan benar</small> -->
+			  </div>
+			  <div class="form-group">
+			    <label for="textEmail">Email</label>
+			    <input type="text" class="form-control" name="textEmail" id="textEmail" placeholder="Enter Email">
+			   <!--  <small id="emailHelp" class="form-text text-muted">Silahkan anda mengisi Email dengan benar</small> -->
+			  </div>
+			</form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
+	        <button type="button" class="btn btn-primary" id="submit-update">Update</button>
 	      </div>
 	    </div>
 	  </div>
