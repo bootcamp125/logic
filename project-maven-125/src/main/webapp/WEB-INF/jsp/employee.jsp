@@ -36,7 +36,7 @@
 	 				<td>${employee.address }</td>
 	 				<td>
 	 					<a class="btn btn-outline-danger delete-btn" href="#">Delete</a>
-	 					<a class="btn btn-outline-warning update-btn" href="#">Update</a>
+	 					<a id="${employee.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
 	 				</td>
 	 			</tr>
 	 		</c:forEach>
@@ -88,15 +88,20 @@
 	<script type="text/javascript" src="/assets/bootstrap-4.0.0-beta.2/dist/js/bootstrap.min.js"></script>
 	 	
  	<script type="text/javascript">
+ 		
  		$(document).ready(function(){
+ 		 var id = 0;
  			$('.update-btn').on('click', function(){
  				
  				//ambil data dari server => ajax
+ 				id = $(this).attr('id');
+ 				
  				$.ajax({
  					type: 'POST',
- 					url : 'employee/empid/'+2,
+ 					url : 'employee/empid/'+id,
  					success : function(data){
- 						console.log(data);
+ 						//console.log(JSON.stringify(data));
+ 						_setFieldUpdateModal(data);
  					},
  					dataType: 'json'
  				});
@@ -104,12 +109,18 @@
  				$('#updateModal').modal();
  			});
  			
+ 			function _setFieldUpdateModal(data){
+ 				$('#textName').val(data.name);
+				$('#textAddress').val(data.address);
+				$('#textEmail').val(data.email);
+ 			}
+ 			
  			//event submit data for update
  			$('#submit-update').click(function(){
- 				//Object Notation => JSON
  				
  				//Object ala js
  				var Employee = {
+ 					id : id,
  					name : $('#textName').val(),
  					address : $('#textAddress').val(),
  					email : $('#textEmail').val(),
@@ -117,7 +128,15 @@
  				};
  				
  				//ajax update
- 				console.log(Employee);
+ 				$.ajax({
+ 					type: 'PUT',
+ 					url : 'employee/update',
+ 					contentType: "application/json",
+ 					data: JSON.stringify(Employee),
+ 					success: function(data){
+ 						window.location = "/employee";
+ 					}
+ 				});
  			});
  		});
  	</script>

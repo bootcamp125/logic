@@ -39,4 +39,30 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		
 		return employees;
 	}
+
+	public Employee getEmployeeById(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		
+		Employee employee = session.get(Employee.class, id);
+		return employee;
+	}
+
+	public void update(Employee employee) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.update(employee);
+		session.flush();
+	}
+
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		Employee employee = new Employee();
+		employee.setId(id);
+		employee.setName("abc");
+		
+		session.delete(employee);
+		session.flush();
+	}
 }

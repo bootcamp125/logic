@@ -25,5 +25,20 @@ public class EmployeeService{
 		return employeeDao.getAllEmployees();
 	}
 
+	public Employee getEmployeeById(int id) {
+		// TODO Auto-generated method stub
+		return employeeDao.getEmployeeById(id);
+	}
+
+	public void update(Employee employee) {
+		// TODO Auto-generated method stub
+		employeeDao.update(employee);
+	}
+
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		employeeDao.delete(id);
+	}
+
 
 }
