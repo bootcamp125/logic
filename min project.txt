@@ -1,0 +1,39 @@
+penilainnya : 
+1. master => 6 table per aplikasi
+2. form => 2 per orang
+3. transaksi => 2 transaksi perorang
+	- Master Detail
+
+1. kelompok 1 (Penjualan)
+	a. ayu
+		- Penjualan
+		- Refaund
+	b. fikar
+		- Diskon
+		- stock barang
+		
+
+2. kelompok 2 (Kursus Jasa)
+	a. izza
+		1. Test Certification 
+		2. Feedback
+	b. dafri
+		1. Penjadwalan kursus
+		2. pembayaran
+
+2. kelompok 2 (Kursus Jasa)
+	a. izza
+		1. Test Certification 
+		2. 
+	b. dafri
+		1. Penjadwalan kursus
+		2. pembayaran
+		
+3. kelompok 3 (Perpustakaan)
+	a. hana
+		1. Pengembalian
+		2. Denda
+	b. giri
+		1. peminjaman buku
+			
+		2. Pembelian buku -> stock barang
